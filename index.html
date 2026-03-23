@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Safari Entertainment</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #0b0b0f; color: #fff; }
+    body { font-family: 'Poppins','Montserrat',sans-serif; background: #0b0b0f; color: #fff; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
 
     /* Navbar */
     nav {
@@ -20,13 +21,11 @@
     }
     .logo { font-size: 1.5rem; font-weight: 700; color: #ff4da6; letter-spacing: 2px; }
 
-    /* Desktop Menu */
+/* Desktop Menu */
     .nav-links { display: flex; list-style: none; }
     .nav-links li { margin-left: 25px; position: relative; }
-    .nav-links li a {
-      font-weight: 500; transition: color 0.3s;
-    }
-.nav-links li a::after {
+    .nav-links li a { font-weight: 500; transition: color 0.3s; }
+    .nav-links li a::after {
       content: ''; position: absolute; left: 0; bottom: -5px;
       width: 0%; height: 2px; background: #ff4da6;
       transition: width 0.3s;
@@ -43,11 +42,11 @@
       display: block; height: 3px; background: #fff; border-radius: 2px;
       transition: all 0.3s ease;
     }
-    .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
     .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
- /* Mobile Menu */
+    /* Mobile Menu */
     .mobile-menu {
       position: fixed; top: 0; right: -100%;
       width: 70%; height: 100%;
@@ -62,7 +61,7 @@
     .mobile-menu ul li a { font-size: 1.2rem; color: #fff; transition: color 0.3s; }
     .mobile-menu ul li a:hover { color: #ff4da6; }
 
-    /* Overlay */
+/* Overlay */
     .overlay {
       position: fixed; top: 0; left: 0;
       width: 100%; height: 100%;
@@ -71,12 +70,67 @@
       transition: opacity 0.4s ease;
       z-index: 998;
     }
-.overlay.active { opacity: 1; visibility: visible; }
+    .overlay.active { opacity: 1; visibility: visible; }
 
-    /* Responsive */
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: url('about.jpg') center/cover no-repeat;
+      position: relative;
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; padding: 0 20px;
+    }
+.hero::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(11,11,15,0.7), rgba(11,11,15,0.7));
+    }
+    .hero-content { position: relative; z-index: 1; }
+    .hero h1 { font-size: 70px; font-weight: 700; letter-spacing: 3px; }
+    .hero p { font-size: 1.5rem; margin: 20px 0; color: #ff4da6; }
+    .btn {
+      background: #ff4da6; color: #fff; padding: 15px 35px;
+      border-radius: 40px; font-weight: 600; transition: 0.3s;
+      display: inline-block;
+    }
+    .btn:hover { background: #b366ff; transform: scale(1.05); }
+
+    /* Sections */
+    section { padding: 80px 20px; max-width: 1100px; margin: auto; }
+    h2 { text-align: center; font-size: 2.5rem; margin-bottom: 20px; color: #ff4da6; letter-spacing: 2px; }
+    p { text-align: center; max-width: 700px; margin: auto; }
+
+    /* Training Programs */
+    .programs { display: flex; justify-content: space-around; flex-wrap: wrap; margin-top: 40px; }
+    .card {
+background: #1a1a1f; padding: 25px; border-radius: 15px;
+      width: 300px; margin: 15px; text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    }
+    .card:hover { transform: scale(1.05); box-shadow: 0 6px 15px rgba(0,0,0,0.6); }
+    .card h3 { margin-bottom: 10px; color: #b366ff; font-weight: 700; }
+
+    /* Girl Group */
+    .girl-group { text-align: center; }
+    .girl-group img {
+      width: 400px; border-radius: 15px; margin-top: 20px;
+      transition: transform 0.4s;
+    }
+    .girl-group img:hover { transform: scale(1.05); }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact a { color: #ff4da6; font-weight: 500; }
+
+ /* Responsive */
     @media (max-width: 768px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
+      .hero h1 { font-size: 40px; }
+      .hero p { font-size: 1rem; }
+      .programs { flex-direction: column; align-items: center; }
+      .girl-group img { width: 90%; }
     }
   </style>
 </head>
@@ -96,8 +150,9 @@
     <div class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </div>
-  </nav>
- <!-- Mobile Menu -->
+</nav>
+
+  <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobileMenu">
     <ul>
       <li><a href="#">Home</a></li>
@@ -108,9 +163,65 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </div>
-<!-- Overlay -->
+
+  <!-- Overlay -->
   <div class="overlay" id="overlay"></div>
 
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+<h1>Safari Entertainment</h1>
+      <p>A New Era Begins</p>
+      <a href="#auditions" class="btn">Apply for Audition</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>Safari Entertainment is a creative platform dedicated to discovering and training talented girls in singing, dance, and performance.</p>
+  </section>
+
+  <!-- Auditions Section -->
+  <section id="auditions">
+    <h2>Auditions</h2>
+    <p>Join the next generation of idols. Apply now and showcase your talent in singing, dancing, or rap performance.</p>
+    <a href="#contact" class="btn">Apply Now</a>
+  </section>
+ <!-- Training Programs -->
+  <section id="programs">
+    <h2>Training Programs</h2>
+    <div class="programs">
+      <div class="card">
+        <h3>Dance Training</h3>
+        <p>Learn powerful choreography and stage presence.</p>
+      </div>
+      <div class="card">
+        <h3>Vocal Training</h3>
+        <p>Develop strong vocals and harmonization skills.</p>
+      </div>
+      <div class="card">
+        <h3>Rap Training</h3>
+        <p>Master rhythm, flow, and lyrical performance.</p>
+      </div>
+    </div>
+  </section>
+<!-- Girl Group -->
+  <section id="girlgroup" class="girl-group">
+    <h2>Savage Angel</h2>
+    <p>Our premier girl group, blending talent and charisma.</p>
+    <img src="artist1.jpg" alt="Savage Angel Group">
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact">
+    <h2>Contact Us</h2>
+    <p>Follow us on Instagram: 
+      <a href="https://instagram.com/safari_entertainment_ipop" target="_blank">@safari_entertainment_ipop</a>
+    </p>
+  </section>
+
+  <!-- JavaScript for Mobile Menu -->
   <script>
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -123,7 +234,7 @@
       overlay.classList.toggle('active');
     });
 
-    overlay.addEventListener('click', () => {
+ overlay.addEventListener('click', () => {
       hamburger.classList.remove('active');
       mobileMenu.classList.remove('active');
       overlay.classList.remove('active');
@@ -135,7 +246,7 @@
         mobileMenu.classList.remove('active');
         overlay.classList.remove('active');
       });
- });
+    });
   </script>
 
 </body>
